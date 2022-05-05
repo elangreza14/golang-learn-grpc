@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "calculator/calculatorpb;calculatorpb";
+
+message calculatoring {
+    int32 sum_one = 1;
+    int32 sum_two = 2;
+}
+
+message calculatoringRequest {
+    calculatoring calculatoring = 1;
+}
+
+message calculatoringResponse {
+    int32 result = 1;
+}
+
+message calculatoringPrimeDecomRequest {
+    int32 primenum = 1;
+}
+
+message calculatoringPrimeDecomResponse {
+    int32 resultprime = 1;
+}
+
+message averageRequest {
+    int32 renum = 1;
+}
+
+message averageResponse {
+    float result = 1;
+}
+message maxValueRequest {
+    int32 inputmax = 1;
+}
+
+message maxValueResponse {
+    int32 resultmax = 1;
+}
+
+message SquareeRequest {
+    int32 number_input = 1;
+}
+
+message SquareResponse {
+    double number_root = 1;
+}
+
+
+
+service calculatorService{
+    rpc calculator (calculatoringRequest) returns (calculatoringResponse) {};
+    rpc calculatorPrimeDecom (calculatoringPrimeDecomRequest) returns (stream calculatoringPrimeDecomResponse) {};
+    rpc average (stream averageRequest) returns (averageResponse) {};
+    rpc MaxValue (stream maxValueRequest) returns (stream maxValueResponse) {};
+    rpc SquareRoot (SquareeRequest) returns (SquareResponse) {};
+}
